@@ -1,0 +1,73 @@
+    .jumbotron {
+        background: #8C001A;
+        color:  #D1B37F;
+        padding-bottom: 0px;
+		padding-left: 100px;
+		padding-right: 100px;
+		
+    }
+    .jumbotron .btn-primary {
+        background: #845ac7;
+        border-color: #845ac7
+    }
+    .jumbotron .btn-primary:hover {
+        background: #7646c1
+    }
+    .jumbotron p {
+        /* color: #d9ccee; */
+		color: #D1B37F;
+        max-width: 75%;
+        margin: 1em auto 2em
+    }
+    .navbar+.jumbotron {
+        margin-top: -20px
+    }
+    .jumbotron .lang-logo {
+        display: block;
+        background: #b01302;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        border: 2px solid white
+    }
+    .jumbotron .lang-logo img {
+        max-width: 100%
+    }
+
+	.right {
+		position: absolute;
+		right: 0px;
+	}
+	
+	.mid {
+		align: center;
+	}
+	
+	.contact-footer {
+		display: block;
+		background-color: #222;
+		border-color: #080808;
+		min-height: 50px;
+		border: 0px solid;
+		color:  #D1B37F;
+		align: center;
+		position: relative;
+		bottom: 0px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+	}
+	
+	@media screen and (max-width: 600px) {
+		#dates {
+			visibility: hidden;
+		}
+		
+		#section-name {
+			visibility: hidden;
+		}
+	}
