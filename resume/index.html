@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+		Portfolio of Aidan O'Brien
+		</title>
+		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/base.css">
+
+        <script>dataLayer = [];</script>
+	</head>
+	
+	<body>
+	<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PHJ9VC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PHJ9VC');</script>
+    <!-- End Google Tag Manager -->
+	<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+		<div class="container">
+			<ul class="nav navbar-nav">
+				<li class="{% if nbar == 'home' %}active{% endif %}">
+					<a href="/">Home</a>
+				</li>
+				<li class="{% if nbar == 'projects' %}active{% endif %}">
+					<a href="/projects/">Projects</a>
+				</li>
+				<li class="{% if nbar == 'blog' %}active{% endif %}">
+					<a href="/blog/">Blog</a>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle"  data-toggle="dropdown" href="#">About</a>
+					
+					<ul class="dropdown-menu">
+						<li>
+							<a href="https://au.linkedin.com/in/obrienaidan">LinkedIn</a>
+						</li>
+						<li>
+							<a href="https://github.com/AidanOB">GitHub</a>
+						</li>
+					</ul>
+				</li>
+					
+			</ul>
+			
+			<ul class="nav navbar-nav navbar-right">
+				<li class="{% if nbar == 'resume' %}active{% endif %} navbar-right">
+					<a href="/resume/">Resume</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+	{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1>Curriculum Vitae</h1>
+	<p>Aidan O'Brien</p>
+	<!--
+    <a type="button" class="btn btn-lg btn-default" href="https://au.linkedin.com/in/obrienaidan"><img src="/static/LinkedIn-box.png">View my LinkedIn</span></a>
+	-->
+    <!--
+	<a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/python-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
+	-->
+  </div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-2">
+			<div id="section-name">
+				<div class="right">
+					<h4>
+						Career Profile
+					</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<p></p>
+			<p>High performing and motivated Mechatronic Engineering Graduate and former Defence member seeking a graduate role in a competitive company.</p>
+
+			<ul>
+				<li>
+					Extremely strong teamwork skills, refined in a professional environment
+				</li>
+				<li>
+					Committed to learning and developing professional skills
+				</li>
+				<li>
+					Excellent communication skills acquired in range of diverse workplaces
+				</li>
+				<li>
+					Outstanding problem-solving utilising logical and methodical methods
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+  
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div id="section-name">
+				<div class="right">
+					<h4>
+						Education
+					</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>Bachelor of Engineering (Mechatronics)</h4>
+		</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					<h4>2011 – 2015</h4>
+				</div>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+  
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<b>University of New South Wales</b>
+			<ul>
+				<li>
+					Engineering Design – High Distinction
+				</li>
+				<li>
+					Computer Applications in Mechatronic Systems – High Distinction
+				</li>
+				<li>
+					Thermodynamics – High Distinction
+				</li>
+			</ul>
+			<b>
+				Thesis
+			</b>
+			<p><i>Automating Component Selection in Conceptual Design</i></p>
+			<p>High distinction thesis that investigates automating conceptual design, utilising artificial intelligence to generate a design based upon customer requirements.</p>
+			
+		</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+	
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="right">
+				<h4>
+					Professional Experience
+				</h4>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				Saber Astronautics
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					<h4>
+						2014 – 2015
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>Defence Engineering Internship Program</b>
+			</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">	
+					<b>
+						Oct 2014 - Jan 2015
+					</b>
+				</div>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Complex “Systems of Systems” and big data analysis
+					</li>
+					<li>
+						Led a small team in developing robot tracking hardware and software
+					</li>
+					<li>
+						Application development, user interface design and software engineering
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Space Operations Intern
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">	
+					<b>
+						Jan 2014 – Jul 2014
+					</b>
+				</div>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Developing hardware and software solutions for new operations centre
+					<li>
+						Re-factoring of in-house analytical software, resulting in significant cost savings
+					</li>
+					<li>
+						Developed additional C++ code to conduct data-mining and analysis from remote servers
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+  
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="right">
+				
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				Marathon Targets
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					<h4>
+						2014
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Research Intern
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div class="right">	
+				<b>
+					
+				</b>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Conducted product development feasibility studies
+					</li>
+					<li>
+						Developed a custom test suite to perform research
+					</li>
+					<li>
+						The internship completed with the company implementing all my recommendations
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="right">
+				
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				Royal Australian Navy Reserve
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					<h4>
+						2010 – 2015
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Ship Communications Manager
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div class="right">	
+				<b>
+					
+				</b>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Managed internal and external communications systems
+					</li>
+					<li>
+						Ensured departmental compliance with OH&S regulations
+					</li>
+					<li>
+						Responsible for ensuring security and confidentiality of sensitive documents
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+	
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				Royal Australian Navy
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					<h4>
+						2004 – 2010
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+	
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Ship Communications Shift Supervisor
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">	
+					<b>
+						2007 – 2009
+					</b>
+				</div>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Responsible for efficient running of high performance team
+					</li>
+					<li>
+						Managed all external communications to ensure accuracy and timely delivery
+					</li>
+					<li>
+						Regular reporting structure to departmental and senior management
+					</li>
+					<li>
+						Analysed and optimised procedures to ensure maximum uptime of critical systems
+					</li>
+					
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+	
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Fleet IT Support
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">	
+					<b>
+						2009 – 2010
+					</b>
+				</div>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Provided higher level IT support on a variety of operating systems and hardware
+					</li>
+					<li>
+						Analysed and repaired faults with remote computer networks
+					</li>
+					<li>
+						Maintained a multi-national user database
+					</li>
+					<li>
+						Managed mission critical Local Area Networks
+					</li>
+					<li>
+						Trained junior personnel in procedures and documentation
+					</li>
+					
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+		
+	<!-- Title row -->
+	<!--
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="right">
+				<h4>
+					Title
+				</h4>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				First Heading
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div class="right">
+				<h4>
+					Time
+				</h4>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+  <!---->
+  
+  <!-- New Entry Name -->
+
+	<!--
+	<hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="right">
+				
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				Company Name
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div class="right">
+				<h4>
+					Time
+				</h4>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+  <!-- Individual Entry -->
+  <!--
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Entry Name
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div class="right">	
+				<b>
+					Time
+				</b>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<p>Description (optional)</p>
+				<ul>
+					<li>
+						List Element 1
+					</li>
+					<li>
+						List Element 2
+					</li>
+					<li>
+						List Element 3
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+	<!---->
+</div>
+
+
+	<hr>
+	
+	<div class="contact-footer">
+		<div class="container">
+			<p> 
+				© Aidan O'Brien 2015
+			</p>
+		</div>
+	</div>
+	
+	</body>
+	
+</html>
