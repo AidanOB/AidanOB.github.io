@@ -28,12 +28,14 @@
 				<li class="{% if nbar == 'home' %}active{% endif %}">
 					<a href="/">Home</a>
 				</li>
-				<li class="{% if nbar == 'projects' %}active{% endif %}">
+				<!-- Reactivate the following sections when they're implemented
+                <li class="{% if nbar == 'projects' %}active{% endif %}">
 					<a href="/projects/">Projects</a>
 				</li>
 				<li class="{% if nbar == 'blog' %}active{% endif %}">
 					<a href="/blog/">Blog</a>
 				</li>
+                -->
 				<li class="dropdown">
 					<a class="dropdown-toggle"  data-toggle="dropdown" href="#">About</a>
 					
@@ -51,23 +53,17 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 				<li class="{% if nbar == 'resume' %}active{% endif %} navbar-right">
-					<a href="/resume/">Resume</a>
+					<a href="/resume/aidan_obrien.pdf">Download my resume</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	
 <div class="jumbotron text-center">
-  <div class="container">
-    <h1>Curriculum Vitae</h1>
-	<p>Aidan O'Brien</p>
-	<!--
-    <a type="button" class="btn btn-lg btn-default" href="https://au.linkedin.com/in/obrienaidan"><img src="/static/LinkedIn-box.png">View my LinkedIn</span></a>
-	-->
-    <!--
-	<a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/python-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-	-->
-  </div>
+    <div class="container">
+        <h1>Curriculum Vitae</h1>
+        <p>Aidan O'Brien</p>
+    </div>
 </div>
 <div class="container">
 	<div class="row">
@@ -105,59 +101,96 @@
 	<hr>
 	<div class="row">
 		<div class="col-md-2">
-			<div id="section-name">
-				<div class="right">
-					<h4>
-						Education
-					</h4>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<h4>Bachelor of Engineering (Mechatronics)</h4>
-		</div>
-		<div class="col-md-2">
-			<div id="dates">
-				<div class="right">
-					<h4>2011 – 2015</h4>
-				</div>
-			</div>
-		</div>
-	</div>  <!-- end row -->
-  
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<b>University of New South Wales</b>
-			<ul>
-				<li>
-					Engineering Design – High Distinction
-				</li>
-				<li>
-					Computer Applications in Mechatronic Systems – High Distinction
-				</li>
-				<li>
-					Thermodynamics – High Distinction
-				</li>
-			</ul>
-			<b>
-				Thesis
-			</b>
-			<p><i>Automating Component Selection in Conceptual Design</i></p>
-			<p>High distinction thesis that investigates automating conceptual design, utilising artificial intelligence to generate a design based upon customer requirements.</p>
-			
-		</div>
-		<div class="col-md-2"></div>
-	</div> <!-- end row -->
-	
-	<hr>
-	<div class="row">
-		<div class="col-md-2">
 			<div class="right">
 				<h4>
 					Professional Experience
 				</h4>
 			</div>
+		</div>
+		<div class="col-md-8">
+			<h4>
+				Datalicious
+			</h4>
+		</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">
+					<h4>
+						2015 – 2016
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>  <!-- end row -->
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>Project Coordinator</b>
+			</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">	
+					<b>
+						Jan 2016 - Present
+					</b>
+				</div>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						
+					</li>
+					<li>
+						
+					</li>
+					<li>
+						
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b>
+					Graduate Intern Data Engineer
+				</b>
+			</div>
+		<div class="col-md-2">
+			<div id="dates">
+				<div class="right">	
+					<b>
+						Oct 2015 – Dec 2014
+					</b>
+				</div>
+			</div>
+		</div>
+	</div> 
+		<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<ul>
+					<li>
+						Analysis of client KPIs and conversion into tangible metrics
+					<li>
+						Managed IT Assets and ensured network stability during office transitions resulting in zero downtime
+					</li>
+					<li>
+						Implemented analytics suites for clients websites
+					</li>
+				</ul>
+			</div>
+		<div class="col-md-2"></div>
+	</div> <!-- end row -->
+    <hr>
+	<div class="row">
+		<div class="col-md-2">
+			<div class="right"></div>
 		</div>
 		<div class="col-md-8">
 			<h4>
@@ -239,7 +272,6 @@
 			</div>
 		<div class="col-md-2"></div>
 	</div> <!-- end row -->
-  
 	<hr>
 	<div class="row">
 		<div class="col-md-2">
@@ -431,7 +463,7 @@
 			</div>
 		</div>
 	</div> 
-		<div class="row">
+	<div class="row">
 		<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<ul>
@@ -455,92 +487,55 @@
 			</div>
 		<div class="col-md-2"></div>
 	</div> <!-- end row -->
+    
 		
-	<!-- Title row -->
-	<!--
 	<hr>
 	<div class="row">
 		<div class="col-md-2">
-			<div class="right">
-				<h4>
-					Title
-				</h4>
+			<div id="section-name">
+				<div class="right">
+					<h4>
+						Education
+					</h4>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-8">
-			<h4>
-				First Heading
-			</h4>
+			<h4>Bachelor of Engineering (Mechatronics)</h4>
 		</div>
 		<div class="col-md-2">
-			<div class="right">
-				<h4>
-					Time
-				</h4>
+			<div id="dates">
+				<div class="right">
+					<h4>2011 – 2015</h4>
+				</div>
 			</div>
 		</div>
 	</div>  <!-- end row -->
-  <!---->
   
-  <!-- New Entry Name -->
-
-	<!--
-	<hr>
 	<div class="row">
-		<div class="col-md-2">
-			<div class="right">
-				
-			</div>
-		</div>
+		<div class="col-md-2"></div>
 		<div class="col-md-8">
-			<h4>
-				Company Name
-			</h4>
+			<b>University of New South Wales</b>
+			<ul>
+				<li>
+					Engineering Design – High Distinction
+				</li>
+				<li>
+					Computer Applications in Mechatronic Systems – High Distinction
+				</li>
+				<li>
+					Project Management - Distinction
+				</li>
+			</ul>
+			<b>
+				<a href="../projects/thesis/AutoCompSelectConceptDesign-2015.pdf">Thesis</a>
+			</b>
+			<p><i>Automating Component Selection in Conceptual Design</i></p>
+			<p>High distinction thesis that investigates automating conceptual design, utilising artificial intelligence to generate a design based upon customer requirements.</p>
+			
 		</div>
-		<div class="col-md-2">
-			<div class="right">
-				<h4>
-					Time
-				</h4>
-			</div>
-		</div>
-	</div>  <!-- end row -->
-  <!-- Individual Entry -->
-  <!--
-	<div class="row">
-		<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<b>
-					Entry Name
-				</b>
-			</div>
-		<div class="col-md-2">
-			<div class="right">	
-				<b>
-					Time
-				</b>
-			</div>
-		</div>
-	</div> 
-		<div class="row">
-		<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<p>Description (optional)</p>
-				<ul>
-					<li>
-						List Element 1
-					</li>
-					<li>
-						List Element 2
-					</li>
-					<li>
-						List Element 3
-					</li>
-				</ul>
-			</div>
 		<div class="col-md-2"></div>
 	</div> <!-- end row -->
-	<!---->
 </div>
 
 
