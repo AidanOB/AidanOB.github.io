@@ -2,8 +2,12 @@
 <html lang="en">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Simulation of the Solar System</title>
-      <meta charset="utf-8">
+        <title>Simulation of the Solar System</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!--<script type='text/javascript' src='./js/DAT.GUI.min.js'></script>-->
     </head>
     <body style="margin: 0;">
         <!-- Google Tag Manager -->
@@ -14,6 +18,7 @@
         <!-- End Google Tag Manager -->
         <script src="./js/three.min.js"></script>
         <script src="./js/OrbitControls.js"></script>
+        <script src ="./js/sun.js"></script>
         <script>
             // Set the global variables, scene, camera and renderer
             var scene, camera, renderer;
@@ -26,7 +31,7 @@
                 // Create the scene and set the scene size.            
                 scene = new THREE.Scene();
                 var  WIDTH = window.innerWidth,
-                        HEIGHT = window.innerHeight;
+                        HEIGHT = window.innerHeight - 3;
                             
                 // Create Renderer and add to the DOM
                 renderer = new THREE.WebGLRenderer({antialias:true});
@@ -52,11 +57,27 @@
                     
                 // Create a light, set its position, and add it to the scene.
                 var light = new THREE.PointLight(0xffffff);
+                //light.position.set(-100,200,100);
                 light.position.set(-100,200,100);
                 scene.add(light);
                     
                 // Add OrbitControls so that we can pan around with the mouse.
                 controls = new THREE.OrbitControls(camera, renderer.domElement);
+                
+                // Set up the variables for the skybox
+                // Uses the full milky way
+                var skyRadius = 10000,
+                       skySegments = 50,
+                       skyRings = 50;
+                
+                var skyGeometry = new THREE.SphereGeometry(skyRadius, skySegments, skyRings);
+                var skyMaterial = new THREE.MeshBasicMaterial();
+                skyMaterial.map = THREE.ImageUtils.loadTexture('materials/starfield/ESO_-_Milky_Way.jpg');
+                skyMaterial.side = THREE.BackSide;
+                
+                var skyBox = new THREE.Mesh(skyGeometry, skyMaterial);
+                scene.add(skyBox);
+                
                 
                 // Set up the Variables for Earth
                 // Radius is measured in 10,000s. 6,371km = 0.6371
@@ -69,13 +90,41 @@
                 var earth = new THREE.Mesh(earthGeometry, earthMaterial);
                 scene.add(earth);
                 
-                // Create the sphere's material
+                // Create the Earth's material and textures
                 earthMaterial.map = THREE.ImageUtils.loadTexture('materials/earth/Earth.png');
-                earthMaterial.bumpMap = THREE.ImageUtils.loadTexture('materials/earth/bump/EarthNormal.png');
-                earthMaterial.bumpScale = 0.1;
+                earthMaterial.bumpMap = THREE.ImageUtils.loadTexture('materials/earth/bump/earthbump1k.jpg');
+                earthMaterial.bumpScale = 0.05;
                 earthMaterial.specularMap = THREE.ImageUtils.loadTexture('materials/earth/specular/lores/EarthSpec.png');
                 earthMaterial.specular = new THREE.Color('grey');
                 earth.rotation.y -= 1;
+                //earth.position.x += 75;
+                
+                
+                // Set up the vars for the Sun
+                // Sun's radius is 696000 km
+                var sunRadius = 69.6,
+                       sunSegments = 500,
+                       sunRings = 500;
+                
+                var sunGeometry = new THREE.SphereGeometry(sunRadius, sunSegments, sunRings);
+                var sunMaterial = new THREE.MeshLambertMaterial( { 
+                    color: 0xFFFFFFF,
+                    shading: THREE.SmoothShading,
+                    opacity: 0.25, transparent: true
+                } );
+                sunMaterial.depthWrite = false;
+                //var sun = new THREE.Mesh(sunGeometry, sunMaterial);
+                //scene.add(sun);
+                
+                // Create the Sun's materials and textures
+                
+                
+                // Add a lensflare light in the center of the sun
+                var sunlight = new THREE.PointLight(0xFFFFFFF, 1);
+                sunlight.position.set(0, 0, 0);
+                //scene.add(sunlight);
+                
+                
             }
                 
             function animate() {
@@ -87,8 +136,18 @@
                 renderer.render(scene, camera);
                 controls.update();
             }    
-        </script>    
-
+        </script>
+        <!--
+        <nav class="navbar navbar-default navbar-static-bottom navbar-inverse sticky">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" onclick="camera.position.set(earth.position.x + 3, earth.position.y, earth.position.z)">Earth</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        -->
     </body>
     
 </html>
