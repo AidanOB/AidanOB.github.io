@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Simulation of the Solar System</title>
+      <meta charset="utf-8">
+    </head>
+    <body style="margin: 0;">
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PHJ9VC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PHJ9VC');</script>
+        <!-- End Google Tag Manager -->
+        <script src="./js/three.min.js"></script>
+        <script src="./js/OrbitControls.js"></script>
+        <script>
+            // Set the global variables, scene, camera and renderer
+            var scene, camera, renderer;
+                
+            init();
+            animate();
+                
+            // Setup the scene
+            function init() {
+                // Create the scene and set the scene size.            
+                scene = new THREE.Scene();
+                var  WIDTH = window.innerWidth,
+                        HEIGHT = window.innerHeight;
+                            
+                // Create Renderer and add to the DOM
+                renderer = new THREE.WebGLRenderer({antialias:true});
+                renderer.setSize(WIDTH, HEIGHT);
+                document.body.appendChild(renderer.domElement);
+                    
+                // Create Camera and add it to the scene
+                camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
+                camera.position.set(-5,0,0);
+                scene.add(camera);
+                    
+                // Create an event listener that resizes the renderer with the browser window.
+                window.addEventListener('resize', function() {
+                    var  WIDTH = window.innerWidth,
+                            HEIGHT = window.innerHeight;
+                    renderer.setSize(WIDTH, HEIGHT);
+                    camera.aspect = WIDTH / HEIGHT;
+                    camera.updateProjectionMatrix();
+                });
+                    
+                // Set the background color of the scene. //renderer.setClearColorHex(0x333F47, 1);
+                renderer.setClearColorHex(0x000000, 1);
+                    
+                // Create a light, set its position, and add it to the scene.
+                var light = new THREE.PointLight(0xffffff);
+                light.position.set(-100,200,100);
+                scene.add(light);
+                    
+                // Add OrbitControls so that we can pan around with the mouse.
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                
+                // Set up the Variables for Earth
+                // Radius is measured in 10,000s. 6,371km = 0.6371
+                var radius = 0.6371,
+                       segments = 50,
+                       rings = 50;
+                
+                var earthGeometry = new THREE.SphereGeometry(radius, segments, rings);
+                var earthMaterial = new THREE.MeshPhongMaterial();
+                var earth = new THREE.Mesh(earthGeometry, earthMaterial);
+                scene.add(earth);
+                
+                // Create the sphere's material
+                earthMaterial.map = THREE.ImageUtils.loadTexture('materials/earth/Earth.png');
+                earthMaterial.bumpMap = THREE.ImageUtils.loadTexture('materials/earth/bump/EarthNormal.png');
+                earthMaterial.bumpScale = 0.1;
+                earthMaterial.specularMap = THREE.ImageUtils.loadTexture('materials/earth/specular/lores/EarthSpec.png');
+                earthMaterial.specular = new THREE.Color('grey');
+                earth.rotation.y -= 1;
+            }
+                
+            function animate() {
+                         
+                // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+                requestAnimationFrame(animate);
+                 
+                // Render the scene.
+                renderer.render(scene, camera);
+                controls.update();
+            }    
+        </script>    
+
+    </body>
+    
+</html>
