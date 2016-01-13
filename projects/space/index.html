@@ -43,7 +43,7 @@
                     
                 // Create Camera and add it to the scene
                 camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
-                camera.position.set(-175,0,90);
+                camera.position.set(-80,0,-10);
                 scene.add(camera);
                     
                 // Create an event listener that resizes the renderer with the browser window.
@@ -135,13 +135,21 @@
                 earth.add(earthMesh);
                 
                 
+                controls.center = new THREE.Vector3(
+                    earthMesh.position.x,
+                    earthMesh.position.y,
+                    earthMesh.position.z
+                );
+                
             }
                 
             function animate() {
                          
                 // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
                 requestAnimationFrame(animate);
-                 
+                
+                //camera.lookAt(earthMesh.position)
+                
                 // Render the scene.
                 renderer.render(scene, camera);
                 controls.update();
