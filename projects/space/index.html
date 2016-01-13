@@ -25,6 +25,11 @@
             var scene, camera, renderer;
             // Time variables
             var mSec, lastMSec = null;
+            
+            // Declare the planets and their meshes
+            var sun, mercury, venus, earth, luna, mars;
+            var sunMesh, mercuryMesh, venusMesh, earthMesh, lunaMesh, marsMesh;
+            
                 
             init();
             animate();
@@ -76,11 +81,11 @@
                 scene.add(skyBox);
                 
                 // Create the 3D objects for the planet's orbits
-                var sun = new THREE.Object3D();
+                sun = new THREE.Object3D();
                 scene.add(sun);
                 
                 
-                var earth = new THREE.Object3D();
+                earth = new THREE.Object3D();
                 
                 
                 // Set up the vars for the Sun
@@ -99,7 +104,7 @@
                 sunMaterial.depthWrite = false;
 
                 // Create and add the Sun Mesh to the sun's parent object
-                var sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
+                sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
                 sun.add(sunMesh);
 
                 
@@ -122,7 +127,7 @@
                 earthSpecularMap = 'materials/earth/specular/lores/EarthSpec.png';
                                
                 //var earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);                
-                var earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);
+                earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);
                 
                 
                 // Add the planets orbits to the sun
@@ -134,12 +139,9 @@
                 // Add the planet meshes to their orbits
                 earth.add(earthMesh);
                 
+                //camera.addChild(earthMesh);
                 
-                controls.center = new THREE.Vector3(
-                    earthMesh.position.x,
-                    earthMesh.position.y,
-                    earthMesh.position.z
-                );
+                
                 
             }
                 
@@ -148,7 +150,16 @@
                 // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
                 requestAnimationFrame(animate);
                 
+                //earth.rotation.y -=0.005;
+                sunMesh.rotation.y +=0.001
+                earthMesh.rotation.y += 0.005;
                 //camera.lookAt(earthMesh.position)
+                controls.center = new THREE.Vector3(
+                    earthMesh.position.x,
+                    earthMesh.position.y,
+                    earthMesh.position.z
+                );
+                console.log(earth.rotation);
                 
                 // Render the scene.
                 renderer.render(scene, camera);
