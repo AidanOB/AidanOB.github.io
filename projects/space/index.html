@@ -18,10 +18,13 @@
         <!-- End Google Tag Manager -->
         <script src="./js/three.min.js"></script>
         <script src="./js/OrbitControls.js"></script>
-        <script src ="./js/sun.js"></script>
+        <!--<script src="./js/sun.js"></script>-->
+        <script src="./js/PlanetGen.js"></script>
         <script>
             // Set the global variables, scene, camera and renderer
             var scene, camera, renderer;
+            // Time variables
+            var mSec, lastMSec = null;
                 
             init();
             animate();
@@ -31,7 +34,7 @@
                 // Create the scene and set the scene size.            
                 scene = new THREE.Scene();
                 var  WIDTH = window.innerWidth,
-                        HEIGHT = window.innerHeight - 3;
+                        HEIGHT = window.innerHeight - 5;
                             
                 // Create Renderer and add to the DOM
                 renderer = new THREE.WebGLRenderer({antialias:true});
@@ -40,7 +43,7 @@
                     
                 // Create Camera and add it to the scene
                 camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
-                camera.position.set(-5,0,0);
+                camera.position.set(-175,0,90);
                 scene.add(camera);
                     
                 // Create an event listener that resizes the renderer with the browser window.
@@ -54,12 +57,6 @@
                     
                 // Set the background color of the scene. //renderer.setClearColorHex(0x333F47, 1);
                 renderer.setClearColorHex(0x000000, 1);
-                    
-                // Create a light, set its position, and add it to the scene.
-                var light = new THREE.PointLight(0xffffff);
-                //light.position.set(-100,200,100);
-                light.position.set(-100,200,100);
-                scene.add(light);
                     
                 // Add OrbitControls so that we can pan around with the mouse.
                 controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -78,51 +75,64 @@
                 var skyBox = new THREE.Mesh(skyGeometry, skyMaterial);
                 scene.add(skyBox);
                 
+                // Create the 3D objects for the planet's orbits
+                var sun = new THREE.Object3D();
+                scene.add(sun);
                 
-                // Set up the Variables for Earth
-                // Radius is measured in 10,000s. 6,371km = 0.6371
-                var radius = 0.6371,
-                       segments = 50,
-                       rings = 50;
                 
-                var earthGeometry = new THREE.SphereGeometry(radius, segments, rings);
-                var earthMaterial = new THREE.MeshPhongMaterial();
-                var earth = new THREE.Mesh(earthGeometry, earthMaterial);
-                scene.add(earth);
-                
-                // Create the Earth's material and textures
-                earthMaterial.map = THREE.ImageUtils.loadTexture('materials/earth/Earth.png');
-                earthMaterial.bumpMap = THREE.ImageUtils.loadTexture('materials/earth/bump/earthbump1k.jpg');
-                earthMaterial.bumpScale = 0.05;
-                earthMaterial.specularMap = THREE.ImageUtils.loadTexture('materials/earth/specular/lores/EarthSpec.png');
-                earthMaterial.specular = new THREE.Color('grey');
-                earth.rotation.y -= 1;
-                //earth.position.x += 75;
+                var earth = new THREE.Object3D();
                 
                 
                 // Set up the vars for the Sun
+                
                 // Sun's radius is 696000 km
                 var sunRadius = 69.6,
-                       sunSegments = 500,
-                       sunRings = 500;
+                       sunSegments = 32,
+                       sunRings = 32;
                 
                 var sunGeometry = new THREE.SphereGeometry(sunRadius, sunSegments, sunRings);
-                var sunMaterial = new THREE.MeshLambertMaterial( { 
-                    color: 0xFFFFFFF,
-                    shading: THREE.SmoothShading,
-                    opacity: 0.25, transparent: true
+                var sunMaterial = new THREE.MeshBasicMaterial( { 
+                    color: 0xFFFFF00,
+                    wireframe: true,
+                    opacity: 0.8, transparent: true
                 } );
                 sunMaterial.depthWrite = false;
-                //var sun = new THREE.Mesh(sunGeometry, sunMaterial);
-                //scene.add(sun);
-                
-                // Create the Sun's materials and textures
-                
+
+                // Create and add the Sun Mesh to the sun's parent object
+                var sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
+                sun.add(sunMesh);
+
                 
                 // Add a lensflare light in the center of the sun
                 var sunlight = new THREE.PointLight(0xFFFFFFF, 1);
                 sunlight.position.set(0, 0, 0);
-                //scene.add(sunlight);
+                sun.add(sunlight);
+                
+                // Set up the Variables for Earth
+                // Radius is measured in 10,000s. 6,371km = 0.6371
+                var earthRadius = 0.6371,
+                       segments = 50,
+                       rings = 50;
+                
+                
+                // Create the Earth's material and textures
+                earthMap = 'materials/earth/Earth.png';
+                earthBumpMap = 'materials/earth/bump/earthbump1k.jpg';
+                earthBumpScale = 0.05;
+                earthSpecularMap = 'materials/earth/specular/lores/EarthSpec.png';
+                               
+                //var earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);                
+                var earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);
+                
+                
+                // Add the planets orbits to the sun
+                sun.add(earth);
+                
+                // Move the planets into order, but outside the sun.
+                earthMesh.position.x -=80;
+                
+                // Add the planet meshes to their orbits
+                earth.add(earthMesh);
                 
                 
             }
@@ -137,17 +147,6 @@
                 controls.update();
             }    
         </script>
-        <!--
-        <nav class="navbar navbar-default navbar-static-bottom navbar-inverse sticky">
-            <div class="container">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" onclick="camera.position.set(earth.position.x + 3, earth.position.y, earth.position.z)">Earth</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        -->
     </body>
     
 </html>
