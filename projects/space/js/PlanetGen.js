@@ -7,7 +7,10 @@ PlanetGen.init = function(radius, normalMat, bumpMat, bumpScale, specMat){
         bumpMap     : THREE.ImageUtils.loadTexture(bumpMat),
         bumpScale   : bumpScale,
         specularMap : THREE.ImageUtils.loadTexture(specMat),
-        specular       : new THREE.Color('grey')
+        specular       : new THREE.Color('grey'),
+        opacity         : 0.95,
+        transparent   : false
+        
     });
     var planetMesh = new THREE.Mesh(geometry, material);
     return planetMesh;

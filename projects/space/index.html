@@ -19,6 +19,7 @@
         <script src="./js/three.min.js"></script>
         <script src="./js/OrbitControls.js"></script>
         <!--<script src="./js/sun.js"></script>-->
+        <script src="./js/constants.js"></script>
         <script src="./js/PlanetGen.js"></script>
         <script>
             // Set the global variables, scene, camera and renderer
@@ -26,16 +27,41 @@
             // Time variables
             var mSec, lastMSec = null;
             
-            // Declare the planets and their meshes
-            var sun, mercury, venus, earth, luna, mars;
-            var sunMesh, mercuryMesh, venusMesh, earthMesh, lunaMesh, marsMesh;
-            
-                
             init();
             animate();
                 
             // Setup the scene
             function init() {
+            
+                // Set up the vars for the Sun
+                            
+                // Sun's radius is 696000 km
+                var  sunRadius = 69.6,
+                        sunSegments = 32,
+                        sunRings = 32;
+                        
+                // Set up the Variables for Earth
+                // Radius is measured in 10,000s. 6,371km = 0.6371
+                var earthRadius = 0.6371,
+                       segments = 50,
+                       rings = 50;
+                
+                // Create the Earth's material and textures
+                //var earthMap = 'materials/earth/earthmap1k.jpg';
+                var earthMap = 'materials/earth/Earth.png';
+                var earthBumpMap = 'materials/earth/bump/earthbump1k.jpg';
+                var earthBumpScale = 0.05;
+                var earthSpecularMap = 'materials/earth/specular/lores/EarthSpec.png';                
+                       
+                // Set up the Moon's variables
+                var lunaRadius = 0.17371,
+                       lunaSegments = 8,
+                       lunaRings = 8;
+                
+                var lunaMap = 'materials/luna/moonmap1k.jpg';
+                var lunaBumpMap = 'materials/luna/moonbump1k.jpg';
+                var lunaBumpScale = 0.01;
+                       
                 // Create the scene and set the scene size.            
                 scene = new THREE.Scene();
                 var  WIDTH = window.innerWidth,
@@ -84,16 +110,10 @@
                 sun = new THREE.Object3D();
                 scene.add(sun);
                 
-                
+                earthOrbit = new THREE.Object3D();
                 earth = new THREE.Object3D();
-                
-                
-                // Set up the vars for the Sun
-                
-                // Sun's radius is 696000 km
-                var sunRadius = 69.6,
-                       sunSegments = 32,
-                       sunRings = 32;
+                earthOrbit.add(earth);
+                luna = new THREE.Object3D;
                 
                 var sunGeometry = new THREE.SphereGeometry(sunRadius, sunSegments, sunRings);
                 var sunMaterial = new THREE.MeshBasicMaterial( { 
@@ -113,31 +133,45 @@
                 sunlight.position.set(0, 0, 0);
                 sun.add(sunlight);
                 
-                // Set up the Variables for Earth
-                // Radius is measured in 10,000s. 6,371km = 0.6371
-                var earthRadius = 0.6371,
-                       segments = 50,
-                       rings = 50;
-                
-                
-                // Create the Earth's material and textures
-                earthMap = 'materials/earth/Earth.png';
-                earthBumpMap = 'materials/earth/bump/earthbump1k.jpg';
-                earthBumpScale = 0.05;
-                earthSpecularMap = 'materials/earth/specular/lores/EarthSpec.png';
-                               
-                //var earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);                
+                //var earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);
+                earthWireGeometry = new THREE.SphereGeometry(earthRadius - 0.05, 16, 16);
+                earthWireMaterial = new THREE.MeshBasicMaterial( {
+                    color: 0x0000FF,
+                    wireframe: true,
+                    opacity: 0.99, transparent: false
+                } );
+                earthWireMesh = new THREE.Mesh(earthWireGeometry, earthWireMaterial);
                 earthMesh = PlanetGen.init(earthRadius, earthMap, earthBumpMap, earthBumpScale, earthSpecularMap);
+                
+                // Create the Moon's material and textures
+                var lunaGeometry = new THREE.SphereGeometry(lunaRadius - 0.05, lunaSegments, lunaRings);
+                var lunaWireMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x808080,
+                    wireframe: true,
+                    opacity: 0.8, transparent: false
+                });
+                
+                lunaWireMesh = new THREE.Mesh(lunaGeometry, lunaWireMaterial );
+                lunaMesh = PlanetGen.init(lunaRadius, lunaMap, lunaBumpMap, lunaBumpScale, '');
                 
                 
                 // Add the planets orbits to the sun
-                sun.add(earth);
+                sun.add(earthOrbit);
                 
                 // Move the planets into order, but outside the sun.
-                earthMesh.position.x -=80;
+                earth.position.x -=80;
+                earthWireMesh.rotation.z += 0.4101524; // 23.5 degree axial tilt
+                // Put the moon into the correct orbits
+                lunaWireMesh.position.x += 2;
+                luna.rotation.z -= 0.0897972;//(0.4101524);// + 0.0897972);
+                
                 
                 // Add the planet meshes to their orbits
-                earth.add(earthMesh);
+                earth.add(earthWireMesh);
+                earthWireMesh.add(earthMesh);
+                earth.add(luna);
+                luna.add(lunaWireMesh);
+                lunaWireMesh.add(lunaMesh);
                 
                 //camera.addChild(earthMesh);
                 
@@ -150,15 +184,17 @@
                 // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
                 requestAnimationFrame(animate);
                 
-                //earth.rotation.y -=0.005;
-                sunMesh.rotation.y +=0.001
-                earthMesh.rotation.y += 0.005;
-                //camera.lookAt(earthMesh.position)
+                sunMesh.rotation.y += sunRotationSpeed;
+                //earthOrbit.rotation.y += sunRotationSpeed;
+                earthWireMesh.rotateY(earthRotationSpeed);
+                //luna.rotation.y -= earthRotationSpeed; // - lunaRotationSpeed;
+                luna.rotateY(lunaRotationSpeed);
                 controls.center = new THREE.Vector3(
-                    earthMesh.position.x,
-                    earthMesh.position.y,
-                    earthMesh.position.z
+                    earthOrbit.position.x - 80,
+                    earthOrbit.position.y,
+                    earthOrbit.position.z
                 );
+                //camera.lookAt(luna);
                 console.log(earth.rotation);
                 
                 // Render the scene.
