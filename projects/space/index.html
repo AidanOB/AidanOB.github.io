@@ -159,7 +159,7 @@
                 sun.add(earthOrbit);
                 
                 // Move the planets into order, but outside the sun.
-                earth.position.x -=80;
+                earth.position.x -= 149.6;
                 earthWireMesh.rotation.z += 0.4101524; // 23.5 degree axial tilt
                 // Put the moon into the correct orbits
                 lunaWireMesh.position.x += 2;
@@ -190,7 +190,7 @@
                 //luna.rotation.y -= earthRotationSpeed; // - lunaRotationSpeed;
                 luna.rotateY(lunaRotationSpeed);
                 controls.center = new THREE.Vector3(
-                    earthOrbit.position.x - 80,
+                    earthOrbit.position.x - 149.6,
                     earthOrbit.position.y,
                     earthOrbit.position.z
                 );
